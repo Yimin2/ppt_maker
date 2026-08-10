@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>찬양 PPT 메이커</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="header">
+        <div>
+          <h1>찬양 PPT 메이커</h1>
+          <p class="subtitle">가사 붙여넣기 → 슬라이드 편집 → PPT 다운로드</p>
+        </div>
+      </header>
+
+      <main class="main">
+        <section class="panel input-panel">
+          <h2>입력</h2>
+
+          <label class="field">
+            <span>곡 제목</span>
+            <input
+              id="title-input"
+              type="text"
+              placeholder="예: 주 예수 이름 높여"
+              autocomplete="off"
+            />
+          </label>
+
+          <label class="field">
+            <span>가사</span>
+            <textarea
+              id="lyrics-input"
+              rows="16"
+              placeholder="가사를 붙여넣으세요.
+
+1절
+주 예수 이름 높여
+우리 모두 찬양해
+그 사랑 영원히
+우리 안에 흐르네
+
+후렴
+할렐루야 할렐루야
+주께 영광 돌리세
+
+· 빈 줄로 구간을 나눌 수 있어요
+· 1절 / 후렴 같은 라벨은 구간으로 인식됩니다
+· 가사는 구간당 한 번만 · 뒤에 1절 · 후렴 만 쓰면 곡 진행 순서에 추가됩니다
+· 기본은 2줄씩 나뉩니다 (아래에서 편집 가능)"
+            ></textarea>
+          </label>
+
+          <div class="options-row">
+            <label class="inline-field">
+              <span>기본 줄 수</span>
+              <select id="lines-per-slide">
+                <option value="2" selected>2줄</option>
+                <option value="3">3줄</option>
+                <option value="4">4줄</option>
+              </select>
+            </label>
+            <label class="inline-field">
+              <span>자막 위치</span>
+              <select id="lyrics-position" title="PPT에 반영되는 가사 위치">
+                <option value="top-center">가운데 상단</option>
+                <option value="middle-center" selected>정중앙</option>
+                <option value="bottom-center">가운데 하단</option>
+              </select>
+            </label>
+            <label class="checkbox-field">
+              <input id="include-title-slide" type="checkbox" checked />
+              <span>제목 슬라이드 포함</span>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button id="parse-btn" class="btn primary" type="button">
+              슬라이드 만들기
+            </button>
+            <button id="sample-btn" class="btn ghost" type="button">
+              샘플 가사
+            </button>
+          </div>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="preview-header">
+            <h2>슬라이드 미리보기</h2>
+            <div class="preview-meta">
+              <span id="slide-count">0장</span>
+              <button
+                id="undo-btn"
+                class="btn ghost"
+                type="button"
+                disabled
+                title="되돌리기 (Ctrl/Cmd+Z)"
+              >
+                되돌리기
+              </button>
+              <button
+                id="redo-btn"
+                class="btn ghost"
+                type="button"
+                disabled
+                title="다시실행 (Ctrl/Cmd+Shift+Z)"
+              >
+                다시실행
+              </button>
+              <button
+                id="download-btn"
+                class="btn primary"
+                type="button"
+                disabled
+              >
+                PPT 다운로드
+              </button>
+            </div>
+          </div>
+
+          <p class="hint">
+            <strong>선택:</strong>
+            클릭 ·
+            <span class="kbd">Shift+클릭</span> 범위 ·
+            <span class="kbd">Ctrl/⌘+클릭</span> 추가 ·
+            빈 곳/카드 드래그로 여러 장 선택 ·
+            <span class="kbd">Ctrl/⌘+A</span> 전체
+            <br />
+            <strong>⋮⋮</strong> 드래그로 순서 변경(복수 선택 시 함께 이동) ·
+            <span class="kbd">Ctrl/⌘+C·V·X</span> 복사·붙여넣기·잘라내기 ·
+            <span class="kbd">Ctrl/⌘+Enter</span> 새 슬라이드 ·
+            <span class="kbd">Ctrl/⌘+Z</span> 되돌리기
+          </p>
+
+          <div id="arrangement-bar" class="arrangement-bar" hidden>
+            <div class="arrangement-title">
+              곡 진행
+              <span class="arrangement-sub">PPT는 구간별 가사만 · 반복은 여기 순서대로 점프</span>
+            </div>
+            <div id="arrangement-steps" class="arrangement-steps"></div>
+            <p id="arrangement-hint" class="arrangement-hint"></p>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            왼쪽에서 가사를 넣고 <strong>슬라이드 만들기</strong>를 눌러주세요.
+          </div>
+
+          <div id="slides-list" class="slides-list" hidden></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

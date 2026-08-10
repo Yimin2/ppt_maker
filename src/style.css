@@ -1,0 +1,588 @@
+:root {
+  --bg: #f4f6f9;
+  --panel: #ffffff;
+  --panel-border: #d8dee8;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --accent: #3b5bdb;
+  --accent-hover: #2f4ac0;
+  --accent-soft: #edf2ff;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+  --slide-bg: #0a0a0a;
+  --input-bg: #ffffff;
+  --radius: 12px;
+  --shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+  font-family:
+    "Apple SD Gothic Neo",
+    "Malgun Gothic",
+    "Noto Sans KR",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body {
+  line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  margin: 0 0 6px;
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+.main {
+  display: grid;
+  grid-template-columns: minmax(320px, 420px) 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.panel h2 {
+  margin: 0 0 16px;
+  font-size: 1.05rem;
+  color: #111827;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.field > span,
+.inline-field > span {
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+textarea,
+select {
+  width: 100%;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 280px;
+  line-height: 1.6;
+}
+
+.options-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.inline-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.inline-field select {
+  width: auto;
+  min-width: 88px;
+  padding: 8px 10px;
+}
+
+#lyrics-position {
+  min-width: 120px;
+}
+
+.checkbox-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.checkbox-field input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 16px;
+  cursor: pointer;
+  font-weight: 600;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    opacity 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.05s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+}
+
+.btn.ghost {
+  background: #ffffff;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+}
+
+.btn.ghost:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.btn.small {
+  padding: 7px 10px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: #f8fafc;
+  color: var(--text);
+  border: 1px solid var(--panel-border);
+}
+
+.btn.small:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.btn.danger {
+  color: var(--danger);
+}
+
+.btn.danger:hover:not(:disabled) {
+  background: var(--danger-soft);
+  border-color: #fca5a5;
+  color: var(--danger);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.preview-header h2 {
+  margin: 0;
+}
+
+.preview-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#slide-count {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-right: 4px;
+}
+
+.hint {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* 곡 진행 — 자막 넘기는 사람용 순서 가이드 */
+.arrangement-bar {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #c7d2fe;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #eef2ff 0%, #f8faff 100%);
+}
+
+.arrangement-title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #312e81;
+  margin-bottom: 10px;
+}
+
+.arrangement-sub {
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: #6366f1;
+}
+
+.arrangement-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.arrangement-arrow {
+  color: #a5b4fc;
+  font-size: 0.85rem;
+  user-select: none;
+}
+
+.arrangement-chip {
+  appearance: none;
+  border: 1px solid #a5b4fc;
+  background: #ffffff;
+  color: #3730a3;
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.arrangement-chip:hover {
+  border-color: #6366f1;
+  background: #e0e7ff;
+}
+
+.arrangement-chip.is-current {
+  background: #4f46e5;
+  border-color: #4338ca;
+  color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.arrangement-hint {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: #4338ca;
+}
+
+.kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  background: #f8fafc;
+  font-size: 0.8em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.empty-state {
+  border: 1px dashed var(--panel-border);
+  border-radius: 12px;
+  padding: 48px 20px;
+  text-align: center;
+  color: var(--muted);
+  background: #fafbfc;
+}
+
+.slides-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.slide-card {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 10px;
+  align-items: start;
+  background: #f8fafc;
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 14px;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    opacity 0.15s ease;
+  outline: none;
+}
+
+.slide-card.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.12);
+  background: #f5f7ff;
+}
+
+.selection-marquee {
+  position: fixed;
+  z-index: 1000;
+  pointer-events: none;
+  border: 1px solid rgba(59, 91, 219, 0.7);
+  background: rgba(59, 91, 219, 0.12);
+  border-radius: 4px;
+}
+
+.slide-card.dragging {
+  opacity: 0.45;
+}
+
+.slide-card.drop-before {
+  box-shadow: inset 0 3px 0 0 var(--accent);
+}
+
+.slide-card.drop-after {
+  box-shadow: inset 0 -3px 0 0 var(--accent);
+}
+
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  min-height: 48px;
+  margin: 0;
+  padding: 4px 0;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  letter-spacing: -2px;
+  cursor: grab;
+  user-select: none;
+  line-height: 1;
+}
+
+.drag-handle:hover {
+  background: #eef2ff;
+  color: var(--accent);
+  border-color: #c7d2fe;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.slide-main {
+  min-width: 0;
+}
+
+.slide-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.slide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.slide-badge strong {
+  color: var(--text);
+}
+
+.section-input {
+  width: 140px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+/* PPT 미리보기만 다크 유지 — 위치는 자막 위치 옵션 반영 */
+.slide-preview {
+  position: relative;
+  background: var(--slide-bg);
+  border-radius: 10px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 16px 16px 20px;
+  border: 1px solid #1f2430;
+}
+
+.slide-preview.pos-top {
+  justify-content: flex-start;
+}
+
+.slide-preview.pos-middle {
+  justify-content: center;
+}
+
+.slide-preview.pos-bottom {
+  justify-content: flex-end;
+}
+
+.slide-preview.is-title {
+  text-align: center;
+  justify-content: center;
+}
+
+/* 구간 라벨: PPT와 같이 좌측 상단 구석 · 옅은 색 (운영 확인용) */
+.slide-section-label {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  color: #3a3a3a;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  pointer-events: none;
+  user-select: none;
+}
+
+.slide-text {
+  width: 100%;
+  min-height: 96px;
+  resize: vertical;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.15rem;
+  line-height: 1.55;
+  padding: 0;
+  outline: none;
+  box-shadow: none;
+}
+
+.slide-text:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.slide-text::placeholder {
+  color: #6b7280;
+}
+
+.slide-title-text {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  outline: none;
+  box-shadow: none;
+}
+
+.slide-title-text:focus {
+  box-shadow: none;
+  border: none;
+}
+
+.slide-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 56px;
+}
+
+.slide-controls .btn.small {
+  width: 100%;
+}
+
+@media (max-width: 960px) {
+  .main {
+    grid-template-columns: 1fr;
+  }
+
+  .slide-card {
+    grid-template-columns: 28px 1fr;
+  }
+
+  .slide-controls {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    min-width: 0;
+  }
+
+  .slide-controls .btn.small {
+    width: auto;
+  }
+}
